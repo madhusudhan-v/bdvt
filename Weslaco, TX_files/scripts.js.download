@@ -1,0 +1,667 @@
+/*-----------------------------------------------------------------------------------
+
+	Theme Name: Weslaco, TX
+	Front-end developer: Kevin Nowalski
+	Author Design: Kat Wiard
+	Author URI: http://www.revize.com/
+	Date: 1/5/2021
+
+-----------------------------------------------------------------------------------*/
+
+function RZRenderMini(elementList) {
+
+	function noEvents() {
+		var widgetContent = $('div.fc-dayGridDay-view.fc-dayGrid-view .fc-widget-content td.fc-day');
+		if (widgetContent.text() == '' || !widgetContent.text().search('No events')) {
+			widgetContent.text('No events');
+		}
+	}
+
+	function eachEvent(){
+		$('a.fc-day-grid-event').each(function(){
+			var eventIndex = $(this).parent('.fc-event-container').index();
+			$(this).parent().parent(':first-child').parent().siblings().find('td').eq(eventIndex).addClass('day-has-event');
+		});
+
+		noEvents();
+	}
+
+	eachEvent();
+
+	$('body:not(.fullwidth) .fc-left .fc-button-group > .fc-dayGridMonth-button')
+	.add('body:not(.fullwidth) .fc-left .fc-button-group > .fc-prev-button')
+	.add('body:not(.fullwidth) .fc-left .fc-button-group > .fc-next-button')
+	.add('body:not(.fullwidth) .fc-left .fc-button-group > .fc-today-button')
+	.add('.fc-day-number')
+	.on('click', function(){eachEvent()});
+
+}
+
+(function($) {
+
+	'use strict';
+
+	var $window = $(window),
+		$body = $('body');
+
+	/*!
+	 * IE10 viewport hack for Surface/desktop Windows 8 bug
+	 * Copyright 2014-2015 Twitter, Inc.
+	 * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+	 */
+
+	// See the Getting Started docs for more information:
+	// http://getbootstrap.com/getting-started/#support-ie10-width
+	if (navigator.userAgent.match(/IEMobile\/10\.0/)) {
+		var msViewportStyle = document.createElement('style');
+		msViewportStyle.appendChild(
+			document.createTextNode(
+			  '@-ms-viewport{width:auto!important}'
+			)
+		); document.querySelector('head').appendChild(msViewportStyle);
+	}
+
+	// RZ Class
+	if(typeof RZ !== "undefined"){
+		if(RZ.login){
+			$body.addClass("user-logged-in");
+		} else{
+			$body.addClass("user-not-logged-in");
+		}
+	}
+
+	// Keyboard Navigation: Nav, flyout
+	var isClick = false;
+	$("#nav li a, #flyout  li a, a, button, .toggle, .toggle2").on('focusin', function(e) {
+		if( isClick === false ) {
+			$(".focused").removeClass("focused");
+			$(e.currentTarget).parents("#nav li, #flyout li").addClass("focused");
+			$(".opened:not(.focused) ul:visible,.opened2:not(.focused) ul:visible").slideUp().parent().removeClass("opened opened2");
+		} else {
+			$(".focused").removeClass("focused");
+			isClick = false;
+		}
+	});
+
+	// prevent focused class changes on click - This way arrows wont pop when clicking nav links
+	$("#nav a,#flyout a").on('mousedown',function(){
+		isClick = true;
+	});
+
+	// Wrap mega menu li's with container
+	$( "#nav>li>ul" ).wrapInner( "<div class='container'></div>");
+
+	// Search Toggle
+	$('#search-toggle,#search-toggle-mobile').on('click keydown',function(e){
+		if (e.keyCode === 13 || e.type === 'click') {
+			e.preventDefault();
+			$('#search').stop().slideToggle(200);
+			$('#search input').focus();
+			$('#search-toggle,#search-toggle-mobile').toggleClass('fa-search fa-close');
+		}
+	});
+
+	$('#quick-links>li:first-of-type>a').on('click keydown',function(e){
+		if (e.keyCode === 13 || e.type === 'click') {
+			e.preventDefault();
+			$('#search').stop().slideToggle(200);
+			setTimeout(function(){ 
+				$('#search input').focus();
+			}, 2000);
+			$('#search-toggle,#search-toggle-mobile').toggleClass('fa-search fa-close');
+		}
+	});
+
+	// Navigation Toggle
+	$("#nav-toggle").on("click", function(){
+		$("#nav").stop().slideToggle();
+		$(this).toggleClass("fa-bars fa-close");
+	});
+
+	// Menu Arrows and Toggles
+	$("#nav >li>ul,#flyout >li>ul").addClass('first-level');
+	$("#nav  li ul ul").addClass('second-level');
+	$("#nav>li:has(ul)").each(function(){
+		$('<a href="#" class="fa fa-angle-down toggle" tabindex="0" aria-haspopup="true" aria-expanded="false" id="dropdown-toggle-'+$(this).index()+'" aria-label="Show Dropdown for '+ $(this).find('a:first').text() +'"></a>').insertAfter($(this).find('a:first'));
+		$(this).find('ul:first').attr('aria-labelledby', 'dropdown-toggle-'+$(this).index());
+	});
+	$('#nav li ul>div>li:has(ul)').each(function(index) {
+		$('<a href="#" class="fa fa-angle-down toggle2" tabindex="0" aria-haspopup="true" aria-expanded="false" id="sub-dropdown-toggle-'+index+'" aria-label="Show Dropdown for '+ $(this).find('a:first').text() +'"></a>').insertAfter($(this).find('a:first'));
+		$(this).find('ul:first').attr('aria-labelledby', 'sub-dropdown-toggle-'+index);
+	});
+	$('#flyout >li:has(ul)').each(function() {
+		$('<a href="#" class="fa fa-angle-down toggle" tabindex="0" aria-haspopup="true" aria-expanded="false" id="flyout-dropdown-toggle-'+$(this).index()+'" aria-label="Show Flyout for '+ $(this).find('a:first').text() +'"></a>').insertAfter($(this).find('a:first'));
+		$(this).find('ul:first').attr('aria-labelledby', 'flyout-dropdown-toggle-'+$(this).index());
+	});
+
+	function addNavClass() {
+		if ($window.width() < 992) {
+			// Insert needed for mobile
+		} else{
+			// Insert needed for desktop
+			$('#nav ul, #flyout ul').css('display', '');
+		}
+	}
+	addNavClass();
+	$window.resize(addNavClass);
+
+	$(".toggle").on("click keydown",function(e) {
+		if (e.keyCode === 13 || e.type === 'click') {
+			e.preventDefault();
+			var $parent = $(this).parent();
+			var $parentLi = $parent.parent();
+			$parent.toggleClass('opened');
+			if($parent.addClass('active') && $(this).next('.first-level').is(":visible")){
+				$(this).next('.first-level').slideUp();
+				$parent.removeClass('active');
+				$(this).attr({'aria-expanded': 'false'});
+			} else {
+				$(this).attr({'aria-expanded': 'true'});
+				$(".first-level").slideUp("slow");
+				$parent.addClass('active');
+				$(this).next('.first-level').slideToggle();
+			}
+		}
+	});
+	$(".toggle2").on("click keydown",function(e) {
+		if (e.keyCode === 13 || e.type === 'click') {
+			e.preventDefault();
+			var $parent = $(this).parent();
+			var $parentLi = $parent.parent();
+			$parent.toggleClass('opened2');
+			if($parent.addClass('active') && $(this).next('.second-level').is(":visible")){
+				$(this).next('.second-level').slideUp();
+				$parent.removeClass('active');
+				$(this).attr({'aria-expanded': 'false'});
+			} else {
+				$(this).attr({'aria-expanded': 'true'});
+				$(".second-level").slideUp("slow");
+				$parent.addClass('active');
+				$(this).next('.second-level').slideToggle();
+			}
+		}
+	});
+
+	// close nav if left
+	$(".desktop *").focus(function(e){
+		var $opened = $(".opened");
+		var $opened2 = $(".opened2");
+		if( $opened.length > 0 || $opened2.length > 0 ) {
+			if( $(".opened :focus").length < 1 ){
+				$opened.children("ul").slideUp();
+				$opened.removeClass("opened");
+				$(".opened2").removeClass("opened2");
+			}
+			if( $(".opened2 :focus").length < 1 ){
+				$opened2.children("ul").slideUp();
+				$opened2.removeClass("opened2");
+			}
+		}
+	});
+
+	// Flyout
+	var flyout = $('#flyout'),
+		flyoutwrap = $('#flyout-wrap');
+
+	if (flyout.text().length){
+		flyoutwrap.prepend('<div id="flyout-toggle" class="hidden-lg hidden-md"><i class="fa fa-bars"></i> Sub Menu</div>');
+	}
+
+	$("#flyout-toggle").on("click", function(){
+		flyout.slideToggle();
+		$(this).toggleClass("active");
+	});
+
+	/*
+	* E-Notify Auto submit
+	*/
+	$.urlParam=function(n){var e=new RegExp("[?&]"+n+"=([^]*)").exec(window.location.href);return null==e?null:e[1]||0};
+	var $enotify = $('iframe[src*="/revize/plugins/notify/notify.jsp"]');
+	if( $enotify.length > 0 ){
+		var emailStr = $.urlParam("email");
+		if( emailStr != null ){
+			$enotify.attr("src", $enotify.attr("src") + "&email=" + emailStr);
+		}
+	}
+
+	// Make sure all calendars have unique ids
+	$('iframe[name="calendar"]').each(function (index, calendar) {
+		calendar.id = 'calendar-' + index;
+	});
+
+	// Start Frame Resizer
+	function resizeIframe(height, frameElement) {
+		if ( frameElement ) {
+			frameElement.height = "";
+			frameElement.height = height;
+		}
+	}
+
+	var eventMethod = window.addEventListener ? "addEventListener" : "attachEvent";
+	var eventHandler = window[eventMethod];
+	var messageEvent = eventMethod === "attachEvent" ? "onmessage" : "message";
+	eventHandler(messageEvent, function (e) {
+		if ( Array.isArray(e.data) ) {
+			if( e.data[0] === "setCalHeight" || e.data[0] === "setNotifyHeight") {
+				var frames = document.querySelectorAll('iframe');
+				for( var i = 0; i < frames.length; i++ ) {
+					if( frames[i].contentWindow === e.source ){
+						resizeIframe(e.data[1], frames[i]);
+					}
+				}
+			}
+		}
+	});
+	// End Frame Resizer
+
+	// Alert Close Caching
+	if ($("div.alert").length) {
+		if (window.sessionStorage) {
+			var hide = parseInt(window.sessionStorage.getItem("alertClosed")) > 1;
+			if (hide && $(".user-logged-in").length == 0) {
+				$("div.alert").slideToggle();
+			}
+		}
+		$("div.alert button.close").on('click', function(e) {
+			if (window.sessionStorage) {
+				window.sessionStorage.setItem("alertClosed",parseInt(window.sessionStorage.getItem("alertClosed")||0)+1);
+			}
+		});
+	}
+
+	// date
+	if( typeof moment !== "undefined" ){
+		var date = moment().format("[today's date: <span>]MMMM DD[,] YYYY[</span>]");
+		$('#date').append(date);
+	}
+
+	$('#translation-links span').on('keydown click', function(e){
+		if (e.keyCode === 13 || e.type === 'click') {
+			$('#translation-links ul').stop().fadeToggle();
+		}
+	});
+
+	$('#translation-links ul').on('mouseleave',function(){
+		$(this).fadeOut();
+	});
+
+	var translateURL = "//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
+
+	 // Translate Script
+	$.getScript(translateURL);
+	$('#translation-links a').click(function() {
+		var lang = $(this).data('lang');
+		var $frame = $('.goog-te-menu-frame:first');
+		if (!$frame.length) {
+			return false;
+		}
+		$frame.contents().find('.goog-te-menu2-item span.text:contains(' + lang + ')').get(0).click();
+		return false;
+	});
+
+	// bxSlider
+	if(typeof $.fn.bxSlider !== "undefined"){
+		$('.bxslider').bxSlider({
+			mode:'fade',
+			auto:($('.bxslider').children().length < 2) ? false : true,
+			pager: false
+		});
+	}
+
+	// YTPlayer
+	if(typeof $.fn.YTPlayer !== "undefined"){
+		$("#video-bg").YTPlayer();
+	}
+
+	// Tiny Slider
+	if($('#news-links').length){
+		var nlinkItems = $('.nlink-item').length;
+		var nlinks = tns({
+			container: '#news-links',
+			nav: true,
+			controlsPosition: 'bottom',
+			controlsText: ['<img src="_assets_/images/angle-left.png" class="angle-left" alt="" role="img">','<img src="_assets_/images/angle-right.png" class="angle-right" alt="" role="img">'],
+			items: 1,
+			gutter: 30,
+			// autoplay: true,
+			// autoplayHoverPause: true,
+			// autoplayButtonOutput: false
+		});
+		$('#news-links-ow .tns-nav button').each(function(){
+			var navNumber = $(this).index() + 1;
+			$(this).append(navNumber);
+		});
+		$('#news-links-ow .tns-nav').appendTo('.tns-controls');
+		nlinks.events.on('transitionEnd', lastActiveItem);
+		function lastActiveItem(){
+			var nlinkActiveItems = $('.tns-slide-active').length;
+			$('#news-links .tns-slide-active').removeClass('lastActiveItem');
+			$('#news-links .tns-slide-active').each(function(index){
+				if (index === nlinkActiveItems - 1 && nlinkActiveItems>1) {
+					// this is the last one
+					$(this).addClass('lastActiveItem');
+				}
+					if (nlinkActiveItems === 1) {
+					// this is the last one
+					$(this).addClass('lastActiveItem');
+				}
+			});
+		}
+		lastActiveItem();
+		$window.resize(lastActiveItem);
+	}
+    
+    // Tiny Slider
+	if (typeof tns !== "undefined") {
+
+		$('#services .tiny-carousel').each(function(i, el) {
+			var $el = $(el);
+			var tinyItemCount = $el.children().length;
+			var tinyItemData = $el.data('tinyItems') ? $el.data('tinyItems') : 6;
+			tns({
+				container: el,
+				items: Math.min(tinyItemCount, tinyItemData),
+				lazyload: true,
+				lazyloadSelector: '.tns-lazy-img', // accompanied with data src or data-style
+				preventScrollOnTouch: 'force',
+                gutter: 30,
+                nav: false,
+                controlsText: [
+                    '<',
+                    '>'
+                ],
+                loop: false,
+                responsive:{
+                    1199:{
+                        items: 4
+                    },
+                    991:{
+                        items: 3
+                    },
+                    767:{
+                        items: 2
+                    },
+                    0:{
+                        items: 1
+                    }
+                }
+			});
+		});
+	}
+
+	// Waypoints
+	if( typeof $.fn.waypoint !== "undefined" ){
+		var waypoint1 = $('#search-area').waypoint(function(direction){
+			if (direction == 'up') {
+				$('#quick-links li:nth-of-type(1)').removeClass('active');
+			} else {
+				$('#quick-links li').removeClass('active');
+			    $('#quick-links li:nth-of-type(1)').addClass('active');
+			}
+		},{offset: '20%'});
+		var waypoint2 = $('#services').waypoint(function(direction){
+			if (direction == 'up') {
+				$('#quick-links li:nth-of-type(2)').removeClass('active');
+				$('#quick-links li:nth-of-type(1)').addClass('active');
+			} else {
+				$('#quick-links li').removeClass('active');
+			    $('#quick-links li:nth-of-type(2)').addClass('active');
+			}
+		},{offset: '20%'});
+		var waypoint3 = $('#news').waypoint(function(direction){
+			if (direction == 'up') {
+				$('#quick-links li:nth-of-type(3)').removeClass('active');
+				$('#quick-links li:nth-of-type(2)').addClass('active');
+			} else {
+				$('#quick-links li').removeClass('active');
+			    $('#quick-links li:nth-of-type(3)').addClass('active');
+			}
+		},{offset: '20%'});
+		var waypoint4 = $('#events').waypoint(function(direction){
+			if (direction == 'up') {
+				$('#quick-links li:nth-of-type(4)').removeClass('active');
+				$('#quick-links li:nth-of-type(3)').addClass('active');
+			} else {
+				$('#quick-links li').removeClass('active');
+			    $('#quick-links li:nth-of-type(4)').addClass('active');
+			}
+		},{offset: '20%'});
+		var waypoint5 = $('#our-city').waypoint(function(direction){
+			if (direction == 'up') {
+				$('#quick-links li:nth-of-type(5)').removeClass('active');
+				$('#quick-links li:nth-of-type(4)').addClass('active');
+			} else {
+				$('#quick-links li').removeClass('active');
+			    $('#quick-links li:nth-of-type(5)').addClass('active');
+			}
+		},{offset: '20%'});
+		var waypoint6 = $('#footer').waypoint(function(direction){
+			if (direction == 'up') {
+				$('#quick-links li:nth-of-type(6)').removeClass('active');
+				$('#quick-links li:nth-of-type(5)').addClass('active');
+				$('#quick-links').stop().fadeToggle();
+			} else {
+				$('#quick-links li').removeClass('active');
+			    $('#quick-links li:nth-of-type(6)').addClass('active');
+				$('#quick-links').stop().fadeToggle();
+			}
+		},{offset: '50%'});
+		$('#quick-links li').on('click keypress',function(e){
+			if(e.which === 13 || e.type === 'click'){
+				e.preventDefault();
+				$('#quick-links li').removeClass('active');
+				$(this).addClass('active');
+				if($(this).index() === 5){
+					$('#quick-links').fadeOut();
+				}
+				waypoint1[0].disable();
+				waypoint2[0].disable();
+				waypoint3[0].disable();
+				waypoint4[0].disable();
+				waypoint5[0].disable();
+				waypoint6[0].disable();
+				setTimeout(function(){ 
+					waypoint1[0].enable();
+					waypoint2[0].enable();
+					waypoint3[0].enable();
+					waypoint4[0].enable();
+					waypoint5[0].enable();
+					waypoint6[0].enable();
+				}, 1000);
+			}
+		});	
+	}
+
+	// Calendar Select tabs
+	$( "#calendar-tabs" ).change(function() {
+		var tabIndex = $(this)[0].selectedIndex;
+		console.log(tabIndex);
+		$('.calendar-wrap').stop().slideUp();
+		$('.calendar-wrap').eq(tabIndex).stop().slideDown().toggleClass('current');
+	});
+	$('#calendar-tabs').val(''); // Reset tabs select
+
+	// Clone share
+	$('.share-btn').clone().prependTo('#news .pull-right');
+
+	// Fade in/out scroll
+	$(window).scroll(function(){
+		if ($(this).scrollTop() > 1000) {
+			$('#scroll-up').fadeIn();
+		} else {
+			$('#scroll-up').fadeOut();
+		}
+	});
+
+	// Click event to scroll to top
+	$('#scroll-up').click(function(){
+		$('html, body').animate({scrollTop : 0},800);
+		return false;
+	});
+
+	// Skip to Content
+	$('#skip').click(function(e){
+        e.preventDefault();
+		$("#main,#freeform-main").attr("tabindex","-1");
+		$("#main,#freeform-main").focus();
+		$("#main,#freeform-main").removeAttr("tabindex");
+	});
+
+	// Responsive Tables
+	$('.post table:not(.layout-table):not(.not-responsive)').wrap('<div class="table-responsive"></div>');
+	$('.layout-table').attr('role', 'presentation');
+
+	$window.ready(function(){
+
+        if (RZ.pagerecordid == '61' || RZ.pagerecordid == '62' || RZ.pagerecordid == '63'|| RZ.pagerecordid == '64'|| RZ.pagerecordid == '65'|| RZ.pagerecordid == '66'|| RZ.pagerecordid == '67'|| RZ.pagerecordid == '68'|| RZ.pagerecordid == '69'|| RZ.pagerecordid == '70'|| RZ.pagerecordid == '71'|| RZ.pagerecordid == '72'){
+            $('#slider').addClass('no-filter');
+        }
+        
+		// matchHeight
+		if(typeof $.fn.matchHeight !== "undefined"){
+			$('.equal').matchHeight({
+				//defaults
+				byRow: true,
+				property: 'height', // height or min-height
+				target: null,
+				remove: false
+			});
+			$('.services-link').matchHeight({
+				//defaults
+				byRow: false,
+				property: 'height', // height or min-height
+				target: null,
+				remove: false
+			});
+		}
+
+		// Animations http://www.oxygenna.com/tutorials/scroll-animations-using-waypoints-js-animate-css
+		function onScrollInit( items, trigger ) {
+			items.each( function() {
+				var osElement = $(this),
+					osAnimationClass = osElement.data('os-animation'),
+					osAnimationDelay = osElement.data('os-animation-delay');
+
+				osElement.css({
+					'-moz-animation-delay':     osAnimationDelay,
+					'animation-delay':          osAnimationDelay,
+					'-webkit-animation-delay':  osAnimationDelay
+				});
+
+				var osTrigger = ( trigger ) ? trigger : osElement;
+
+				if(typeof $.fn.waypoint !== "undefined"){
+					osTrigger.waypoint(function() {
+						osElement.addClass('animated').addClass(osAnimationClass);
+					},{
+						triggerOnce: true,
+						offset: '100%'
+					});
+				}
+			});
+		}
+		onScrollInit($('.os-animation'));
+
+		//#Smooth Scrolling
+		$('a[href*="#"]').not('[href="#"]').not('[href*="#collapse"]').on("click keydown",function(event) {
+			if (event.keyCode === 13 || event.type === 'click') {
+				if (location.pathname.replace(/^\//,'') === this.pathname.replace(/^\//,'') && location.hostname === this.hostname) {
+					var target = $(this.hash);
+					target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+					if($('body').attr('id') === 'homepage') {
+						if (target.length) {
+							event.preventDefault();
+							$('html,body').animate({
+								scrollTop: target.offset().top -58
+							}, 1000, function() {
+								var $target = $(target);
+								$target.focus();
+								if ($target.is(":focus")) {
+									return false;
+								} else {
+									$target.attr('tabindex','-1');
+									$target.focus();
+									$target.removeAttr('tabindex');
+								};
+							});
+						}
+					}else{
+						if (target.length) {
+							event.preventDefault();
+							$('html,body').animate({
+								scrollTop: target.offset().top -108
+							}, 1000, function() {
+								var $target = $(target);
+								$target.focus();
+								if ($target.is(":focus")) {
+									return false;
+								} else {
+									$target.attr('tabindex','-1');
+									$target.focus();
+									$target.removeAttr('tabindex');
+								};
+							});
+						}
+					}
+				}
+			}
+		});// TODO FIND MEEEE
+
+		/*global jQuery */
+		/*!
+		* FlexVerticalCenter.js 1.0
+		*
+		* Copyright 2011, Paul Sprangers http://paulsprangers.com
+		* Released under the WTFPL license
+		* http://sam.zoy.org/wtfpl/
+		*
+		* Date: Fri Oct 28 19:12:00 2011 +0100
+		*/
+		$.fn.flexVerticalCenter = function( options ) {
+			var settings = $.extend({
+				cssAttribute:   'margin-top', // the attribute to apply the calculated value to
+				verticalOffset: 0,            // the number of pixels to offset the vertical alignment by
+				parentSelector: null,         // a selector representing the parent to vertically center this element within
+				debounceTimeout: 25,          // a default debounce timeout in milliseconds
+				deferTilWindowLoad: false     // if true, nothing will take effect until the $(window).load event
+			}, options || {});
+
+			return this.each(function(){
+				var $this   = $(this); // store the object
+				var debounce;
+
+				// recalculate the distance to the top of the element to keep it centered
+				var resizer = function () {
+
+					var parentHeight = (settings.parentSelector && $this.parents(settings.parentSelector).length) ?
+						$this.parents(settings.parentSelector).first().height() : $this.parent().height();
+
+					$this.css(
+						settings.cssAttribute, ( ( ( parentHeight - $this.height() ) / 2 ) + parseInt(settings.verticalOffset) )
+					);
+				};
+
+				// Call on resize. Opera debounces their resize by default.
+				$(window).resize(function () {
+					clearTimeout(debounce);
+					debounce = setTimeout(resizer, settings.debounceTimeout);
+				});
+
+				if (!settings.deferTilWindowLoad) {
+					// call it once, immediately.
+					resizer();
+				}
+
+				// Call again to set after window (frames, images, etc) loads.
+				$(window).load(function () {
+					resizer();
+				});
+
+			});
+
+		};
+		$('.v-align').flexVerticalCenter();
+
+	}); // Ready
+
+})(jQuery);

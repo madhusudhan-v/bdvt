@@ -1,0 +1,83 @@
+@font-face{font-family:'Proxima Nova';src:url('../../../fonts/ProximaNova-Bold.woff2')format('woff2'),url('../../../fonts/ProximaNova-Bold.woff')format('woff');font-weight:bold;font-style:normal;font-display:swap}
+@font-face{font-family:'Proxima Nova';src:url('../../../fonts/ProximaNova-Regular.woff2')format('woff2'),url('../../../fonts/ProximaNova-Regular.woff')format('woff');font-weight:normal;font-style:normal;font-display:swap}
+
+#mini-events{pointer-events:all}
+#homepage .calendar-wrap-in{display:flex;justify-content:space-between}
+#homepage .mini-calendar{display:block!important;width:42.6%;background:#fff;padding:25px 0 20px;border-radius:3px;position:relative;margin-top:-140px}
+#homepage .mini-list-loaded{display:block!important}
+#homepage .fc-view > table{border-style:hidden}
+#homepage .fc-toolbar.fc-header-toolbar{margin-bottom:0;background:transparent;padding:15px 20px 27px;display:flex}
+/* #homepage .fc-left .fc-button-group+.fc-button-group{display:none} */
+#homepage .fc-button-group{display:block;padding-right:20px}
+#homepage .fc-toolbar{display:block}
+#homepage .fc-button-group > .fc-button{background:transparent!important;border:none;width:22px;height:30px;padding:0}
+#homepage .fc-button-group > .fc-button:hover,.fc-button-group > .fc-button:focus{background:transparent!important}
+#homepage .fc-button-group > .fc-button:not(:last-child){margin-left:0;margin-right:10px}
+#homepage .fc-button-group > .fc-button:not(:first-child) {float:right;margin-right:0}
+#homepage .fc-left .fc-button-group:first-child{display:flex}
+
+#homepage .fc-button .fc-icon{display:inline-block;width:22px;height:30px}
+#homepage .fc-center{display:none}
+#homepage .fc-left{order:2}
+#homepage .fc-right{display:block;text-align:left;position:relative;top:-3px;pointer-events:none;order:1}
+#homepage .fc-icon-chevron-left:before{content:"\f053";display:inline-block;font-family:'FontAwesome';font-size:30px;color:#d18620}
+#homepage .fc-icon-chevron-right:before{content:"\f054";display:inline-block;font-family:'FontAwesome';font-size:30px;color:#d18620}
+#homepage .fc-day-header>span:after{display:inline-block;font:normal 14px 'Proxima Nova',sans-serif;color:#171819}
+
+#homepage .fc-right h2{font:bold 36px 'Proxima Nova',sans-serif!important;color:#D8981E;text-transform:uppercase;padding:3px 10px 0 16px}
+#homepage .fc td{border:none}
+#homepage .fc-content-skeleton .fc-day-number{font:bold 18px 'Proxima Nova',sans-serif;color:#000;text-decoration:none}
+#homepage #mini-events .fc-row.fc-widget-header{border-top:2px solid #d7d7d7!important;border-bottom:2px solid #d7d7d7!important;padding:0 20px}
+#homepage .fc .fc-row .fc-content-skeleton td{border-color:#d0d6de;text-align:center}
+#homepage .fc-scroller.fc-day-grid-container{height:100%!important;padding:0 20px}
+#homepage #mini-events .fc-unthemed td.fc-today{background:transparent;border:none}
+#homepage .fc-unthemed td.fc-today a{position:relative}
+#homepage .fc-unthemed td.fc-today a:after{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%, -50%);width:40px;height:40px;background:#d18620;border-radius:50%;z-index:-1}
+#homepage .fc-today .fc-day-number{color:#fff}
+#homepage #mini-events .fc-dayGrid-view .fc-body .fc-row{min-height:3em;line-height:3em}
+#homepage #mini-events .fc-day-number{display:inline-block;float:none;margin:10px}
+#homepage .fc-widget-header th{padding:20px 12px;border:none;font:bold 18px 'Proxima Nova',sans-serif;color:#000;text-transform:uppercase;text-align:center}
+#homepage .mini-events-list{width:42.5%;background:transparent;height:100%;position:relative}
+#homepage .event{display:flex;flex-wrap:wrap;align-items:center;position:relative;height:110px;background:#fff;padding:0;box-shadow: 0px 3px 40px 0px rgba(0, 0, 0, 0.1);cursor:pointer}
+#homepage .event:not(:last-of-type){margin-bottom:23px}
+#homepage .event:after{content:'';position:absolute;top:50%;right:40px;transform:translateY(-50%);width:22px;height:30px;background:url(../../../images/arrow-right.png) center/22px 30px no-repeat}
+#homepage .event time{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;align-self:flex-start;height:100%;width:110px;background:#d18620;font:bold 36px 'Proxima Nova',sans-serif;color:#fff;padding:0 0 4px}
+#homepage .event .event-month{display:block;width:100%;text-align:center;font:normal 18px 'Proxima Nova',sans-serif;color:#fff;text-transform:uppercase;margin:0 0 -38px}
+#homepage .event-data{display:flex;flex-wrap:wrap;width:calc(100% - 110px);height:100%;line-height:1.3;padding:5px 63px 5px 40px;overflow:auto}
+#homepage .event-title{width:100%;font:bold 24px 'Proxima Nova',sans-serif;color:#111;line-height:1;align-self:center}
+
+#homepage .fc-left .fc-button-group+.fc-button-group{display:flex;margin:0}
+#homepage .fc-left .fc-button-group+.fc-button-group{position:absolute;top:0;right:0}
+#homepage .fc-left .fc-button-group+.fc-button-group button{width:auto;padding:0 2px;background:#D8981E!important;border-radius:0;margin:0 0 0 1px}
+#homepage .fc-left .fc-button-group > .fc-dayGridMonth-button{background:#0c50a0!important;padding:1px 6px;border-radius:3px}
+#homepage .fc-dayGridMonth-view .fc-day-grid-event{display:none}
+
+#homepage a.fc-day-number{cursor:auto;text-decoration:none;pointer-events:none}
+#homepage .fc-day-top.day-has-event.fc-today a.fc-day-number{color:#fff!important}
+#homepage .fc-day-top.day-has-event a.fc-day-number{color:#D8981E;font:bold 18px 'Proxima Nova',sans-serif;cursor:pointer;pointer-events:all}
+/* Text no events */
+#homepage div.fc-dayGridDay-view.fc-dayGrid-view .fc-widget-content{font:bold 18px 'Proxima Nova',sans-serif;color:#111;text-align:center;margin-top:20px}
+#homepage div.fc-dayGridDay-view.fc-dayGrid-view .fc-day-header>span{display:inline-block;font:bold 14px 'Proxima Nova',sans-serif;color:#171819}
+
+
+@media only screen and (max-width:991px) {
+    #homepage .calendar-wrap-in{flex-wrap:wrap}
+    #homepage .mini-calendar{width:100%}
+    #homepage .mini-events-list{width:100%;top:0;margin-top:30px}
+    #homepage .event-title{left:15px}
+    #homepage .fc-right h2{text-align:center}
+    #homepage .mini-calendar{margin-top:0}
+    
+}
+
+@media only screen and (max-width:479px) {
+    #homepage .event-data{padding:5px 15px;width:calc(100% - 60px)}
+    #homepage .event-title{font-size:18px}
+    #homepage .event:after{content:none}
+    #homepage .event time{width:60px}
+    #homepage .fc-right h2{font-size:18px!important}
+    #homepage #mini-events .fc-row.fc-widget-header{padding:0}
+    #homepage .fc-scroller.fc-day-grid-container{padding:0}
+    #homepage .fc-toolbar.fc-header-toolbar{padding:15px 0 27px}
+    #homepage .fc-widget-header th{font-size:14px}
+}
