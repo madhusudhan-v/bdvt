@@ -1,0 +1,105 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="moviePageTitle">Movie Promotion Website</title>
+    <link rel="stylesheet" href="styles/style.css">
+
+</head>
+<body>
+    <div>
+        <header>
+            <h1 id="movieTitle"><a href="/wiki/Darshan_(Kannada_actor)"></a></h1>
+            <p id="officialWebsite"></p><a id="wikiLink" href="#" target="_blank"> Wiki</a>
+        </header>
+
+        <section id="trailer" class="container">
+            <h2>Trailer</h2>
+            <div class="video-container">
+                <iframe id="trailer-iframe" frameborder="0" allowfullscreen></iframe>
+            </div>
+            <img id="trailer-thumbnail" class="thumbnail-preview" src="" alt="Next Video Thumbnail" onclick="loadVideo('trailer',content.trailerVideoIds)">
+            <!-- Above thumbnail pointing to current video only,so disabling for time-being -->
+            <!-- <img id="next-video" src="next_icon.png" alt="Next Video" onclick="loadVideo('trailer',content.trailerVideoIds)"> -->
+        </section>
+
+        <section id="youtube" class="container">
+            <h2>YouTube Videos</h2>
+            <div class="video-container">
+                <iframe id="youtube-iframe" frameborder="0" allowfullscreen></iframe>
+            </div>
+            <img id="youtube-thumbnail" class="thumbnail-preview" src="" alt="Next Video Thumbnail" onclick="loadVideo('youtube',content.youtubeVideoIds)">
+            <!-- Above thumbnail pointing to current video only,so disabling for time-being -->
+            <!-- <img id="next-video" src="next_icon.png" alt="Next Video" onclick="loadVideo('trailer',content.youtubeVideoIds)"> -->
+        </section>
+
+        <section>
+            <h2>Image Slideshow</h2>
+            <div class="slideshow-container" id="slideshow-container">
+                <!-- Slides will be dynamically added here -->
+                <!--  <button class="nav-btn prev" onclick="plusSlides(-1)">&#10094;</button>
+                 <button class="nav-btn next" onclick="plusSlides(1)">&#10095;</button> -->
+            </div>
+
+        </section>
+
+        <section id="release" class="container">
+            <h2>Movie Release Details</h2>
+            <p id="releaseDate"></p>
+            <p id="director"></p>
+            <p id="genre"></p>
+            <p id="follow-us-en"><a id="facebookPageLink" href="https://www.facebook.com/YOUR_FACEBOOK_PAGE" target="_blank">Facebook Page(Random)</a></p>
+        </section>
+        <!--
+                <section id="facebook" class="container">
+                    <h2>Facebook Page(Random)</h2>
+                    <p id="follow-us-en">Follow us on <a id="facebookPageLink" href="https://www.facebook.com/YOUR_FACEBOOK_PAGE" target="_blank">Facebook</a></p>
+                </section> -->
+
+        <section id="behind-the-scenes" class="container">
+            <h2 id="behind-the-scenes-en">Behind the Scenes</h2>
+            <p id="explore-en">Content will be adding soon.</p>
+            <!-- Add more content as needed -->
+        </section>
+
+
+        <section>
+            <h2>Special Hot Details & Review Discussions</h2>
+            <p>Will be added very soon</p>
+            <!-- <p id="hotDetail1"></p>
+            <p id="hotDetail2"></p>
+            <p id="hotDetail3"></p> -->
+        </section>
+
+        <footer>
+            <!--<form id="contactForm">
+              <label for="queryType">Query Type:</label>
+              <select id="queryType" name="queryType">
+                  <option value="domain">Domain Name</option>
+                  <option value="advertisements">Advertisements</option>
+                  <option value="content">Adding More Content</option>
+                  <option value="obligation">Obligation</option>
+              </select>
+
+              <label for="name">Your Name:</label>
+              <input type="text" id="name" name="name" onmouseout="contactUsEmailSendLinkUpdate()">
+
+            <label for="email">Your Email:</label>
+                  <input type="email" id="email" name="email"  onmouseout="contactUsEmailSendLinkUpdate()">
+
+                  <label for="message">Your Message:</label>
+                  <textarea id="message" name="message" rows="4"  onmouseout="contactUsEmailSendLinkUpdate()"></textarea>
+
+                  <a id="contactUsEmailSendLink" href="#" target="_top" onclick="contactUsEmailSendLinkUpdate()">Submit</a>
+              </form>-->
+
+            <h2> Developed by <a href="http://katthe.com/">KATTHE(ಕತ್ತೆ)</a>  Softwares &  Solutions,India. <a href="mailto:nammadhu@outlook.in">E-MAIL</a>  </h2>
+        </footer>
+    </div>
+    <script src="contentToReplace.js"></script>
+    <script src="scripts/slideshow.js"></script>
+    <script src="scripts/scripts.js"></script>
+    <script src="scripts/contactUsEmail.js"></script>
+</body>
+</html>

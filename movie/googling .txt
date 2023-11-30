@@ -1,0 +1,3 @@
+kaatera
+
+create movie promotion stylish website with trailer video,release details, youtube videos,facebook page,movie booking options like bookmyshow,ott details and movie behind the scenes and some more special hot details in best order. It should be responsive view on all device, stylish with some best graphics on page. Also it contains some images of movie which are either physical path and few url, can be on background or foreground. Page should be having background image of movie in best transparency

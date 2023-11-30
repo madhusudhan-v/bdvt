@@ -1,0 +1,23 @@
+kaatera
+
+next
+https://www.youtube.com/embed/eqF2fn-0TVU?si=ewFjxowociAYJYwI&amp;start=5&amp;autoplay=1
+
+trailer
+https://www.youtube.com/embed/lVuuwNQg74M?si=wfFBVv1ri7o1AgaG&amp;start=3&amp;autoplay=1
+
+
+
+follower shooting time video:
+https://www.youtube.com/embed/lLIOrghWCAM?si=OQf3iEZcJftLAyVK
+
+avinash
+https://www.youtube.com/embed/LMCsVzq_IDg?si=Lwhpb2yDkGB-XznE
+
+
+'trailer1': 'https://www.youtube.com/embed/lVuuwNQg74M?si=wfFBVv1ri7o1AgaG&amp;start=3&amp;autoplay=1',
+            'trailer2': 'https://www.youtube.com/embed/eqF2fn-0TVU?si=ewFjxowociAYJYwI&amp;start=5&amp;autoplay=1',
+            'trailer3': 'https://www.youtube.com/embed/lVuuwNQg74M?si=wfFBVv1ri7o1AgaG&amp;start=3&amp;autoplay=1',
+            'youtube1': 'https://www.youtube.com/embed/LMCsVzq_IDg?si=Lwhpb2yDkGB-XznE',
+            'youtube2': 'https://www.youtube.com/embed/lLIOrghWCAM?si=OQf3iEZcJftLAyVK',
+            'youtube3': 'https://www.youtube.com/embed/HTzSD7d4sTk?si=Fihi_Ybvde3be1Nx'

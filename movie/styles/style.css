@@ -1,0 +1,122 @@
+/* Your CSS styles here */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background-image: url('../images/background.jpg'); /* Replace with your movie's background image */
+    background-size: cover;
+    /* background-attachment: fixed; */
+    background-position: inherit;
+    color: #fff;
+}
+
+header {
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 20px;
+    text-align: center;
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+section {
+    overflow-x: auto; /* Enable horizontal scrolling */
+    padding: 40px;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.6);
+    margin-top: -20px;
+    border-radius: 10px;
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    margin-bottom: 20px;
+}
+.container {
+    max-width: 800px;
+    margin: auto;
+}
+.video-container {
+    display: flex;
+    flex-wrap: nowrap; /* Prevent wrapping of videos to the next line */
+    justify-content: center;
+}
+
+    .video-container iframe {
+        margin-right: 10px; /* Add some space between videos */
+        width: 80vw; /* Adjust the width of each video as needed */
+        height: 45vw; /* Adjust the height of each video as needed */
+    }
+
+.thumbnail-preview {
+    max-width: 100px; /* Adjust the width of the thumbnail preview as needed */
+    max-height: 56.25px; /* Adjust the height proportionally */
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.slideshow-container {
+    max-width: 100%;
+    overflow: auto;
+    white-space: nowrap; /* Prevent slides from wrapping to the next line */
+}
+
+.movie-images {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 30px;
+}
+
+    .movie-images img {
+        max-width: 100%;
+        height: auto;
+    }
+
+
+.mySlides {
+    display: inline-block; /* Display slides in a row */
+    width: 50vh; /* Adjust the width as needed */
+    height: 75vh;
+    transition: opacity 0.5s ease-in-out; /* Add transition for opacity change */
+}
+
+.fade {
+    opacity: 1;
+}
+
+@keyframes fade {
+    from {
+        opacity: 0.4;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+footer {
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 20px;
+    text-align: center;
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+/* Styles for navigation buttons */
+.nav-btn {
+    position: relative;
+    top: 50%;
+    width: auto;
+    padding: 16px;
+    margin-top: -22px;
+    font-size: 24px;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.5);
+    border: none;
+    cursor: pointer;
+}
+
+.prev {
+    left: 0;
+}
+
+.next {
+    right: 0;
+}
