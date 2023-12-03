@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background: url('background-image.jpg') no-repeat center center fixed;
+            background-size: contain;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            text-align: center;
+            overflow: hidden; /* Hide scrollbar */
+        }
+
+        h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+
+        p {
+            font-size: 1.2em;
+            margin-bottom: 40px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+
+        .contact-section {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 400px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            margin: auto;
+        }
+
+        /* Media query for smaller screens (e.g., mobile devices) */
+        @media only screen and (max-width: 600px) {
+            h1 {
+                font-size: 2em;
+            }
+
+            p {
+                font-size: 1em;
+            }
+
+            .contact-section {
+                width: 90%;
+            }
+        }
+    </style>
+    <title>Under Construction</title>
+</head>
+<body>
+    <div>
+       
+        <div class="contact-section">
+            <h1>Website Under Construction</h1>
+            <p>We're working hard to improve the site and apologize for any inconvenience.</p>
+            <p>For inquiries, please contact us at:</p>
+            <a href="mailto:info@example.com">info@example.com</a>
+        </div>
+        <script>
+            // Get the current URL and display it in the heading
+            document.addEventListener('DOMContentLoaded', function () {
+    var currentUrl = window.location.href.substring(0, 30);
+                var heading = document.querySelector('h1');
+                heading.innerHTML += '<br><small>' + currentUrl + '</small>';
+            });
+        </script>
+    </div>
+</body>
+</html>
