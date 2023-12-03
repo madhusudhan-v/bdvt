@@ -86,11 +86,15 @@
     </div>
 
     <script>
+
+        window.onload = function() {
+       document.getElementById('current-url').textContent = window.location.href.substring(0, 30);
+        };
         let secretNumber = generateSecretNumber();
         let attempts = 0;
 
         // Get current page URL and display as heading
-        document.getElementById('current-url').textContent = window.location.href.substring(0, 30);
+        //document.getElementById('current-url').textContent = window.location.href.substring(0, 30);
 
         function checkGuess() {
             const guessInput = document.getElementById('guess-input');
