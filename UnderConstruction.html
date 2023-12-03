@@ -9,72 +9,119 @@
             padding: 0;
             font-family: 'Arial', sans-serif;
             background: url('background-image.jpg') no-repeat center center fixed;
-            background-size: contain;
+            background-size: cover;
             height: 100vh;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
             color: #fff;
             text-align: center;
-            overflow: hidden; /* Hide scrollbar */
         }
 
         h1 {
-            font-size: 3em;
+            font-size: 2em;
             margin-bottom: 20px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
         }
 
         p {
             font-size: 1.2em;
-            margin-bottom: 40px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+            margin-bottom: 20px;
         }
 
-        .contact-section {
-            background-color: rgba(255, 255, 255, 0.8);
+        #game-container {
+            margin-top: 20px;
+        }
+
+        #guess-input {
+            font-size: 1em;
+            padding: 5px;
+            margin-right: 10px;
+        }
+
+        #submit-guess {
+            font-size: 1em;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+        #result {
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        .contact-info {
+            background-color: rgba(0, 0, 0, 0.7);
             padding: 20px;
             border-radius: 10px;
             width: 80%;
             max-width: 400px;
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-            margin: auto;
+            margin: 20px 0;
         }
 
-        /* Media query for smaller screens (e.g., mobile devices) */
-        @media only screen and (max-width: 600px) {
-            h1 {
-                font-size: 2em;
-            }
-
-            p {
-                font-size: 1em;
-            }
-
-            .contact-section {
-                width: 90%;
-            }
+        /* Style change for failure messages */
+        #result.failure {
+            color: #ff5555;
         }
     </style>
     <title>Under Construction</title>
 </head>
 <body>
     <div>
-       
-        <div class="contact-section">
-            <h1>Website Under Construction</h1>
-            <p>We're working hard to improve the site and apologize for any inconvenience.</p>
-            <p>For inquiries, please contact us at:</p>
-            <a href="mailto:info@example.com">info@example.com</a>
+        <div class="contact-info">
+            <h1 id="current-url"></h1>
+            <h1>Website Under Construction </h1>
+            <p>Owned by Katthe Softwares & Solutions team</p>
+<p>We're working hard to improve the site ,if you have any query,suggestions,complaint please write us an email.</p>
+            <p>Email: <a href="mailto:Katthe@Outlook.in">Katthe@Outlook.in</a></p>
         </div>
-        <script>
-            // Get the current URL and display it in the heading
-            document.addEventListener('DOMContentLoaded', function () {
-    var currentUrl = window.location.href.substring(0, 30);
-                var heading = document.querySelector('h1');
-                heading.innerHTML += '<br><small>' + currentUrl + '</small>';
-            });
-        </script>
+        <div id="game-container">
+            <p>Guess a number between 1 and 10:</p>
+            <input type="number" id="guess-input" min="1" max="10" />
+            <button id="submit-guess" onclick="checkGuess()">Submit Guess</button>
+            <div id="result"></div>
+        </div>
     </div>
+
+    <script>
+        let secretNumber = generateSecretNumber();
+        let attempts = 0;
+
+        // Get current page URL and display as heading
+        document.getElementById('current-url').textContent = window.location.href.substring(0, 30);
+
+        function checkGuess() {
+            const guessInput = document.getElementById('guess-input');
+            const resultDisplay = document.getElementById('result');
+            const guess = parseInt(guessInput.value);
+
+            if (isNaN(guess) || guess < 1 || guess > 10) {
+                resultDisplay.textContent = 'Please enter a valid number between 1 and 10.';
+                resultDisplay.className = 'failure'; // Style change for failure messages
+            } else {
+                attempts++;
+
+                if (guess === secretNumber) {
+                    resultDisplay.textContent = `Congratulations! You guessed the number ${secretNumber} in ${attempts} attempts.`;
+                    resultDisplay.className = ''; // Reset style
+                    secretNumber = generateSecretNumber(); // New secret number for the next game
+                    attempts = 0; // Reset attempts
+                    document.getElementById('guess-input').value = ''; // Clear input
+                } else if (guess < secretNumber) {
+                    resultDisplay.textContent = 'Too low! Try again.';
+                    resultDisplay.className = 'failure'; // Style change for failure messages
+                } else {
+                    resultDisplay.textContent = 'Too high! Try again.';
+                    resultDisplay.className = 'failure'; // Style change for failure messages
+                }
+            }
+        }
+
+        function generateSecretNumber() {
+            return Math.floor(Math.random() * 10) + 1;
+        }
+    </script>
 </body>
 </html>
