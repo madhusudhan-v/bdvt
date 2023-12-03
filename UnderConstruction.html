@@ -88,7 +88,14 @@
     <script>
 
         window.onload = function() {
-       document.getElementById('current-url').textContent = window.location.href.substring(0, 10);
+            setTimeout(function() {
+        // Get the current page URL after any potential redirection
+        //var currentURL = window.location.href;
+document.getElementById('current-url').textContent = window.location.href.substring(0, 10);
+        // Display the URL in the console or wherever needed
+        //console.log(currentURL);
+    }, 500);
+      // document.getElementById('current-url').textContent = window.location.href.substring(0, 10);
         };
         let secretNumber = generateSecretNumber();
         let attempts = 0;
