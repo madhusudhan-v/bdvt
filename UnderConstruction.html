@@ -91,7 +91,7 @@
             setTimeout(function() {
         // Get the current page URL after any potential redirection
         //var currentURL = window.location.href;
-document.getElementById('current-url').textContent = window.location.href.substring(0, 30);
+document.getElementById('current-url').textContent = window.parent.location.href.substring(0, 30);
         // Display the URL in the console or wherever needed
         //console.log(currentURL);
     }, 500);
