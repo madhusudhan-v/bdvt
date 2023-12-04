@@ -1,0 +1,61 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background: url('../background-image.jpg') no-repeat center center fixed;
+    background-size: cover;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    text-align: center;
+}
+
+h1 {
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+p {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+}
+
+#game-container {
+    margin-top: 20px;
+}
+
+#guess-input {
+    font-size: 1em;
+    padding: 5px;
+    margin-right: 10px;
+}
+
+#submit-guess {
+    font-size: 1em;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+#result {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+.contact-info {
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 20px;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    margin: 20px 0;
+}
+
+/* Style change for failure messages */
+#result.failure {
+    color: #ff5555;
+}
