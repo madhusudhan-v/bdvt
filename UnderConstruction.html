@@ -28,6 +28,8 @@
     </div>
 
     <script>
+        document.getElementById('current-url').textContent = document.referrer;
+        /*
  console.log('before location.href:'+window.location.href);
  // console.log('before parent.location.href:'+window.parent.location.href);
  console.log('before doc refer:'+document.referrer);
@@ -46,7 +48,7 @@ console.log('after location.href:'+window.location.href);
             else {
                 document.getElementById('current-url').textContent = window.location.href.substring(0, 30);
             }
-        });
+        }); */
     </script>
     <script src="../one/Scripts/numberGuessGame.js"></script>
 </body>
