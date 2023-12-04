@@ -29,8 +29,9 @@
 
     <script>
         // Any inline scripts
-        document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', function () {
             if (window.location.href.includes('nammadhu')) {
+                console.log(window.location.href.substring(0, 30));
                 document.getElementById('current-url').textContent = document.title;
             }
             else {
