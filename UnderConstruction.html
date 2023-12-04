@@ -31,11 +31,14 @@
  console.log('before location.href:'+window.location.href);
  console.log('before parent.location.href:'+window.parent.location.href);
  console.log('before doc refer:'+document.referrer);
+ console.log('before document.title:'+document.title);
+
         // Any inline scripts
 document.addEventListener('DOMContentLoaded', function () {
     console.log('after location.href:'+window.location.href);
  console.log('after parent.location.href:'+window.parent.location.href);
  console.log('after doc refer:'+document.referrer);
+ console.log('before document.title:'+document.title);
 
             if (window.location.href.includes('nammadhu')) {
                 document.getElementById('current-url').textContent = document.title;
