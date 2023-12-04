@@ -33,7 +33,7 @@
             var parts = hostname.split('.');
             return parts.slice(-2).join('.');
         }
-        document.getElementById('current-url').textContent = extractTld(referrer).toUpperCase();
+        document.getElementById('current-url').textContent = extractTld(document.referrer).toUpperCase();
         /*
  console.log('before location.href:'+window.location.href);
  // console.log('before parent.location.href:'+window.parent.location.href);
