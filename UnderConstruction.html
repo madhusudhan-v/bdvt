@@ -68,13 +68,13 @@
     </style>
     <title>Under Construction</title>
 </head>
-<body>
+<body onload="myFunction()">
     <div>
         <div class="contact-info">
             <h1 id="current-url"></h1>
-            <h1>...Website Under Construction </h1>
+            <h1>Website Under Construction </h1>
             <p>Owned by Katthe Softwares & Solutions team</p>
-<p>We're working hard to improve the site ,if you have any query,suggestions,complaint please write us an email.</p>
+            <p>We're working hard to improve the site ,if you have any query,suggestions,complaint please write us an email.</p>
             <p>Email: <a href="mailto:Katthe@Outlook.in">Katthe@Outlook.in</a></p>
         </div>
         <div id="game-container">
@@ -87,16 +87,11 @@
 
     <script>
 
-        window.onload = function() {
-            setTimeout(function() {
-        // Get the current page URL after any potential redirection
-        //var currentURL = window.location.href;
-document.getElementById('current-url').textContent = window.parent.location.href.substring(0, 30);
-        // Display the URL in the console or wherever needed
-        //console.log(currentURL);
-    }, 500);
-      // document.getElementById('current-url').textContent = window.location.href.substring(0, 10);
-        };
+        function myFunction() {
+            document.getElementById('current-url').textContent = window.location.href.substring(0, 30);
+            //alert(document.referrer);
+        }
+
         let secretNumber = generateSecretNumber();
         let attempts = 0;
 
