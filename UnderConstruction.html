@@ -28,7 +28,12 @@
     </div>
 
     <script>
-        document.getElementById('current-url').textContent = document.referrer;
+        function extractTld(url) {
+            var hostname = new URL(url).hostname;
+            var parts = hostname.split('.');
+            return parts.slice(-2).join('.');
+        }
+        document.getElementById('current-url').textContent = extractTld(referrer).toUpperCase();
         /*
  console.log('before location.href:'+window.location.href);
  // console.log('before parent.location.href:'+window.parent.location.href);
@@ -51,5 +56,6 @@ console.log('after location.href:'+window.location.href);
         }); */
     </script>
     <script src="../one/Scripts/numberGuessGame.js"></script>
+
 </body>
 </html>
